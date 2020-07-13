@@ -16,16 +16,18 @@ public class HttpsClient {
 
 
     private static void disableSslVerification() {
-        try{
+        try {
             // Create a trust manager that does not validate certificate chains
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 @Override
                 public X509Certificate[] getAcceptedIssuers() {
                     return null;
                 }
+
                 @Override
                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
                 }
+
                 @Override
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
                 }
@@ -55,13 +57,13 @@ public class HttpsClient {
     }
 
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         disableSslVerification();
 
         String s = "https://192.168.1.173/external/8ad75eae-f9bd-432b-8f23-5235e2807888/assembly?level=2";
         URL url = new URL(s);
-        HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
+        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
         int responseCode = con.getResponseCode();
